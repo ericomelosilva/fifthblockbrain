@@ -1,18 +1,18 @@
 -- Table: ensembles
-CREATE TABLE ensembles (
+CREATE TABLE IF NOT EXISTS ensembles (
     ensemble_id    INTEGER PRIMARY KEY AUTOINCREMENT,
     ensemble_name  TEXT NOT NULL
 );
 
 -- Table: students
-CREATE TABLE students (
+CREATE TABLE IF NOT EXISTS students (
     student_id     INTEGER PRIMARY KEY AUTOINCREMENT,
     student_name   TEXT NOT NULL,
     email          TEXT NOT NULL
 );
 
 -- Table: ensemble_students (junction table for many-to-many)
-CREATE TABLE ensemble_students (
+CREATE TABLE IF NOT EXISTS ensemble_students (
     ensemble_student_id INTEGER PRIMARY KEY AUTOINCREMENT,
     ensemble_id         INTEGER NOT NULL,
     student_id          INTEGER NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE ensemble_students (
 );
 
 -- Table: attendance
-CREATE TABLE attendance (
+CREATE TABLE IF NOT EXISTS attendance (
     attendance_id  INTEGER PRIMARY KEY AUTOINCREMENT,
     ensemble_id    INTEGER NOT NULL,
     student_id     INTEGER NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE attendance (
 );
 
 -- Table: makeups
-CREATE TABLE makeups (
+CREATE TABLE IF NOT EXISTS makeups (
     makeup_id      INTEGER PRIMARY KEY AUTOINCREMENT,
     ensemble_id    INTEGER NOT NULL,
     student_id     INTEGER NOT NULL,
