@@ -45,3 +45,25 @@ def get_ensembles():
     conn.close()
     return rows
 
+def get_ensemble_config(ensemble_id):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT absence_weight, early_late_weight, makeup_threshold
+        FROM ensembles
+        WHERE ensemble_id = ?
+    """, (ensemble_id,))
+    config = cursor.fetchone()
+    conn.close()
+    return config
+
+def update_ensemble_config(ensemble_id, absence_weight, early_late_weight, makeup_threshold):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        UPDATE ensembles
+        SET absence_weight = ?, early_late_weight = ?, makeup_theshold = ?
+        WHERE ensemble_id = ?
+    """, (absence_weight, early_late_weight, makeup_threshold, ensemble_id))
+    conn.commit()
+    conn.close()
