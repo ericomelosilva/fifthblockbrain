@@ -1,7 +1,10 @@
 -- Table: ensembles
 CREATE TABLE IF NOT EXISTS ensembles (
     ensemble_id    INTEGER PRIMARY KEY AUTOINCREMENT,
-    ensemble_name  TEXT NOT NULL
+    ensemble_name  TEXT NOT NULL,
+    absence_weight REAL DEFAULT 1.0,
+    early_late_weight REAL DEFAULT 0.5,
+    makeup_threshold REAL DEFAULT 2.0
 );
 
 -- Table: students
